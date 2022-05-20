@@ -1,0 +1,47 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListViewMaui.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.ListView;assembly=Syncfusion.Maui.ListView"
+    xmlns:local="clr-namespace:ListViewMaui"
+             BackgroundColor="{DynamicResource SecondaryColor}">
+
+    <ContentPage.BindingContext>
+        <local:ViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <!--overview-->
+        <syncfusion:SfListView x:Name="listView" 
+                            ItemsSource="{Binding CategoryList}"                         
+                            Padding="0,5,0,5"                         
+                            SelectionMode="None"                         
+                            Background="#f2f2f1"                         
+                            ItemSpacing="5,3,5,3" 
+                            ItemSize="{OnPlatform Android=105, Default=100}">
+            <syncfusion:SfListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid  BackgroundColor="White" Padding="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="{OnPlatform Android=105, Default=100}"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="{OnPlatform Android=105, Default=100}" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Image Grid.Column="0" Grid.Row="0" Source="{Binding Image}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" HeightRequest="{OnPlatform Android=105, Default=100}" WidthRequest="{OnPlatform Android=105, Default=100}" Aspect="Fill"/>
+
+                        <Grid Grid.Row="0" Grid.Column="1" Padding="10,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0" Text="{Binding Name}" Margin='{OnPlatform Default="0,5,0,0", Android="0"}' LineBreakMode="WordWrap" TextColor="#DE000000" FontFamily="Roboto-Medium" FontSize="{OnPlatform Android={OnIdiom Phone=15, Tablet=22}, iOS=16, UWP=16}" />
+                            <Label Grid.Row="1" LineBreakMode="WordWrap" Margin='{OnPlatform Android="0,5,5,0", Default="0,5,0,0"}' TextColor="#99000000" LineHeight="1.2" Text="{Binding Description}" FontFamily="Roboto-Regular" FontSize="{OnPlatform Android={OnIdiom Phone=13, Tablet=13}, iOS=14, UWP=14}" />
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </syncfusion:SfListView.ItemTemplate>
+        </syncfusion:SfListView>
+    </ContentPage.Content>
+</ContentPage>
